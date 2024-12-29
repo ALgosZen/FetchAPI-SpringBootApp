@@ -1,1 +1,1 @@
-INSERT INTO "blabla" (username, password) VALUES ('testuser', 'testpassword');
+INSERT INTO "BLABLA" (username, password) VALUES ('testuser', 'testpassword');

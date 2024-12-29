@@ -1,23 +1,26 @@
 package com.example.login.controller;
 
 import com.example.login.model.User;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/login")
+@RequestMapping("/login")
 public class LoginController {
 
+    @GetMapping
+    public ResponseEntity<String> handleGetRequest() {
+        return ResponseEntity.ok("Please use POST to submit login credentials.");
+    }
+    // POST Mapping to handle login requests
     @PostMapping
-    public String login(@RequestBody User user) {
-        // Lombok-generated getters can be used here
-        String username = user.getUsername();
-        String password = user.getPassword();
-
-        // Basic logic to simulate login validation
-        if ("admin".equals(username) && "password".equals(password)) {
-            return "Login successful!";
+    public ResponseEntity<String> login(@RequestBody User user) {
+        // Example login logic
+        if ("testuser".equals(user.getUsername()) && "testpassword".equals(user.getPassword())) {
+            return ResponseEntity.ok("Login successful");
         } else {
-            return "Invalid credentials!";
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
 }
